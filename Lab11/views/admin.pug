@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .show
+        ul
+        each mv in movie
+            li
+                img(id="img" src=`${mv.url}`)
+                p #{mv.title} / #{mv.year}
+                br
+                button(class="b" onclick="editmovie("+ mv._id +")") Edit
+                button(class="b" onclick="deletemovie("+ mv._id +")") Delete
+                -if(mv.trending === true)
+                    button(id="tr" onclick="ntrendingmovie("+ mv._id +"," + "'" + mv.trending + "'" +  ");" )
+                -if(mv.trending === false)
+                    button(id="trr" onclick="trendingmovie("+ mv._id +"," + "'" + mv.trending + "'" +  ");" )
+                

@@ -1,0 +1,41 @@
+extends layout.pug
+
+block content
+  #title
+    h1 Ajou Movie Information
+  #titlee
+    h2 Register Movie
+  br
+  #enter
+    p Please enter the movie information to add a review.
+  br
+  form(action="http://localhost:3000/result" method="POST")
+    input(type="text" name="title" required)
+    br
+    br
+    input(type="text" name="character" required)
+    br
+    br
+    input(type="text" name="genre" required)
+    br
+    br
+    input(type="text" name="image_url" required)
+    br
+    br
+    #rate
+      p Movie Ratings
+    input(class="bt", type="radio", name="rating", value='0' required)
+    | 0
+    input(class="bt", type="radio", name="rating", value='1' required)
+    | 1
+    input(class="bt", type="radio", name="rating", value='2' required)
+    | 2
+    input(class="bt", type="radio", name="rating", value='3' required)
+    | 3
+    input(class="bt", type="radio", name="rating", value='4' required)
+    | 4
+    input(class="bt", type="radio", name="rating", value='5' required)
+    | 5
+    br
+    br
+    input(class="btt", type="submit" value="Submit")

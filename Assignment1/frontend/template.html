@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node.js</title>
+    <meta charset="utf-8">
+</head>
+
+<style>
+    #first {list-style: none; padding: 0px; margin-bottom: 0px; position: relative;}
+    #first li{float:left; margin-right: 8px;}
+
+    #third {width: 1000px; list-style: none; margin-top:5px; padding-bottom:10px; padding-left: 1px; position: relative; border-top: 1px solid black;} 
+    #third li{ float:left; }
+    #a {margin-right:380px;}
+    #b {margin-right:110px;}
+
+    #second { width: 1000px; list-style: none;  padding-left: 0px; position: relative; border-left: 1px solid black;}
+    #second li {border-bottom: 1px solid black;  border-right: 1px solid black;}
+
+    #back {padding-left:5px; background-color: #969696; }
+    #dir {background-color: #969696; }
+    #file {background-color: #d8d8d8;}
+
+    .box{
+        width:350px;
+        height: 350px;
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+      
+        border: 0.1px solid lightgray;
+        background-color: white;
+
+        margin-left: 180px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        
+    }
+    #layer1{
+        width:350px;
+        height: 150px;
+        display: none;
+        position: absolute;
+      
+        border: 0.1px solid lightgray;
+        background-color: white;
+
+        margin-left: 180px;
+        padding-left: 5px;
+        padding-right: 5px;
+
+    }
+    #layer3{
+        width:350px;
+        height: 150px;
+        display: none;
+        position: absolute;
+    }
+    #title {width: 278px;}
+    .titlee {width: 278px;}
+    #textarea {margin-top: 5px; width: 280px; height: 180px;}
+    #close {font-size:17px; color: #535353; border: none; background-color: white; outline:0; float:right;}
+
+    .bt {border: none; margin-right: 500px;}
+    .bt0 {border: none; left: 150px; position: absolute; background-color: #969696; outline:0; margin-top:3px;}
+    .bt1 {border: none; left: 150px; position: absolute; background-color: #d8d8d8; outline:0; margin-top:3px;}
+    .bt2 {border: none; left: 220px; position: absolute; background-color: #d8d8d8; outline:0; margin-top:3px;}
+    .bt3 {border: none; left: 220px; position: absolute; background-color: #969696; outline:0; margin-top:3px;}
+    .p {left: 425px; position: absolute;}
+    .pp {left: 600px; position: absolute;}
+
+    .df {border: none; outline:0; background-color: #969696;}
+    .ff {border: none; outline:0; background-color: #d8d8d8;}
+    
+
+
+
+</style>
+
+<body>
+    <ul id="first">
+        <li onclick="document.getElementById('layer1').style.display='block';">폴더생성</li>
+        <li onclick="document.getElementById('layer2').style.display='block';">파일생성</li>
+        <br>
+    </ul>
+    <ul id="third">
+        <li id="a">Name</li>
+        <li id="b">file size</li>
+        <li>Modification date</li>         
+    </ul>       
+    <ul id="second">     
+        <li>%</li>
+    </ul>
+
+
+    <div id="layer1" class="box">
+        <form action="http://localhost:3000/mkdir" method="POST"> 
+            <button id="close" onclick="document.getElementById('layer2').style.display='none';">X</button>
+            <p>폴더생성</p>
+            <input class="titlee" name="title" type="text"> <br>
+            <input class="bt" type="submit" value="mkdir">
+         </form>        
+    </div>
+    
+
+
+    <div id="layer2" class="box">
+        <form action="http://localhost:3000/editfile" method="POST">
+            <button id="close" onclick="document.getElementById('layer2').style.display='none';">X</button>
+            <p>파일편집</p>      
+            <input id="title" name="title" type="text"> <br>
+            <textarea id="textarea" name="description" type="text"></textarea> <br>
+            <input class="bt" type="submit" value="편집저장">
+        </form> 
+    </div>
+    
+      
+
+    <div id="layer3" class="box">
+        <form action="http://localhost:3000/rename" method="POST">
+            <button id="close" onclick="document.getElementById('layer2').style.display='none';">X</button>
+            <p>Rename</p>
+            <input class="titlee" name="title" type="text">
+            <input class="bt" type="submit" value="Rename">
+        </form>
+    </div>
+    
+
+
+    <script type="text/javascript">
+        function readfile(link){
+            const form=document.createElement('form');
+            form.method='post';
+            form.action="http://localhost:3000/readfile";
+            
+            const hiddenField=document.createElement('input');
+            hiddenField.type='hidden';
+            hiddenField.name='file_name';
+            hiddenField.value=link.textContent;
+            document.getElementById("title").value=link.textContent;
+            //console.log(link.textContent);
+            //console.log(link.value);
+            //console.log("--");
+            document.getElementById("title").value=link.textContent;
+            document.getElementById("textarea").value=link.value;
+            document.getElementById('layer2').style.display='block'; 
+            
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        }    
+        function movedir(link){
+            const form=document.createElement('form');
+            form.method='post';
+            form.action="http://localhost:3000/cd";
+            const hiddenField=document.createElement('input');
+            hiddenField.type='hidden';
+            hiddenField.name='dir_name';
+            hiddenField.value=link.textContent;
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        }
+        function rmfile(link){
+            const form=document.createElement('form');
+            form.method='post';
+            form.action="http://localhost:3000/rmfile";
+            const hiddenField=document.createElement('input');
+            hiddenField.type='hidden';
+            hiddenField.name='file_name';
+            hiddenField.value=link.value;
+            //console.log(link.value);
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        }
+        function rmdir(link){
+            const form=document.createElement('form');
+            form.method='post';
+            form.action="http://localhost:3000/rmdir";
+            const hiddenField=document.createElement('input');
+            hiddenField.type='hidden';
+            hiddenField.name='dir_name';
+            hiddenField.value=link.value;
+            //console.log(link.value);
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            form.submit();
+        } 
+        function rename(link){
+            const form=document.createElement('form');
+            form.method='post';
+            form.action="http://localhost:3000/renamee";
+            const hiddenField=document.createElement('input');
+            hiddenField.type='hidden';
+            hiddenField.name='name';
+            hiddenField.value=link.value;
+            //console.log(link.value);
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+
+            form.submit();
+        }  
+    </script>
+    
+</body>
+</html>

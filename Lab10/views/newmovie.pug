@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    h1 Add movie
+    form(action="http://localhost:3000/routes/movie/create" method="POST")
+        label Title
+        br
+        input(class="i", type="text", name="title")
+        br
+        label Year
+        br
+        input(class="i", type="text", name="year")
+        br
+        label Image Path
+        br
+        input(class="i", type="text", name="url")
+        br
+        input(class="bt", type="submit" value="Add Movie")

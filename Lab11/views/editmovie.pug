@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    form(action=`http://localhost:3000/routes/movie/update/${movie._id}` method="POST")
+        h1 Edit Movie
+        Label Title
+        br
+        input(class="i", type="text", name="title", value=`${movie.title}`)
+        br
+        label Year
+        br
+        input(class="i", type="text", name="year", value=`${movie.year}`)
+        br
+        label Image Path
+        br
+        input(class="i", type="text", name="url", value=`${movie.url}`)
+        br
+        input(class="bt", type="submit", value="Edit movie")
+
+

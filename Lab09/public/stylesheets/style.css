@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#title {font-size: 20px;}
+#titlee {font-size: 15px;}
+#rate {font-size: 18px;}
+#enter {font-size: 21px;}
+.info {font-size: 17px;}
+.bt {margin-right: 8px;}
+
+.btt {background-color: #dbdbdb; border-radius: 3px;}
+
+#img {height: 600px; width: 165px;}
+#star {height:50px; width:50px;}
+
+#err {font-size: 25px;}
+
+a {
+  color: #00B7FF;
+}

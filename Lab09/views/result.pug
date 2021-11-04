@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+    img(id="img" src=`${url}`)
+    h1 #{data.title}
+    hr
+    .info
+        p #{data.character}
+        p #{data.genre}
+    hr
+    -for(var idx=0; idx<data.rating; idx++)
+        img(id="star" src='/images/star.svg' class='rating-star-img')
+    br
+    br
+    hr
+    button(class="btt", onclick="location.href='http://localhost:3000/'") Go Home

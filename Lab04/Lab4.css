@@ -1,0 +1,13 @@
+body {max-width: 1024px; text-align: center; color: white;}
+header {width: 100%; height: 200px; background-color: red;}
+main {width: 100%; height: 120px; background-color: orange;}
+section {width: 50%; height: 200px; float: left; background-color: #478a8ae8; overflow: scroll; }
+article {background-color: skyblue; margin-bottom: 10px; width: 100%;}
+aside {width: 50%; height: 200px; float: right; background-color: darkblue;}
+#article1 {background-color: darkblue;}
+footer {width: 100%; height: 120px; background-color: gray; clear: right;}
+
+@media (max-width: 768px) {
+    section {width: 100%;}
+    aside {width: 100%;}
+}
